@@ -14,7 +14,190 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      availability: {
+        Row: {
+          business_id: string
+          day_of_week: number
+          end_time: string
+          id: string
+          is_available: boolean
+          start_time: string
+        }
+        Insert: {
+          business_id: string
+          day_of_week: number
+          end_time?: string
+          id?: string
+          is_available?: boolean
+          start_time?: string
+        }
+        Update: {
+          business_id?: string
+          day_of_week?: number
+          end_time?: string
+          id?: string
+          is_available?: boolean
+          start_time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "availability_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          booking_date: string
+          booking_time: string
+          business_id: string
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string | null
+          deposit_paid: number
+          id: string
+          notes: string | null
+          service_id: string
+          status: string
+          stripe_session_id: string | null
+          total_price: number
+        }
+        Insert: {
+          booking_date: string
+          booking_time: string
+          business_id: string
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone?: string | null
+          deposit_paid?: number
+          id?: string
+          notes?: string | null
+          service_id: string
+          status?: string
+          stripe_session_id?: string | null
+          total_price?: number
+        }
+        Update: {
+          booking_date?: string
+          booking_time?: string
+          business_id?: string
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string | null
+          deposit_paid?: number
+          id?: string
+          notes?: string | null
+          service_id?: string
+          status?: string
+          stripe_session_id?: string | null
+          total_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      businesses: {
+        Row: {
+          address: string | null
+          avatar_url: string | null
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          owner_id: string
+          phone: string | null
+          slug: string
+        }
+        Insert: {
+          address?: string | null
+          avatar_url?: string | null
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          owner_id: string
+          phone?: string | null
+          slug: string
+        }
+        Update: {
+          address?: string | null
+          avatar_url?: string | null
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          owner_id?: string
+          phone?: string | null
+          slug?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          business_id: string
+          created_at: string
+          deposit_amount: number
+          description: string | null
+          duration_minutes: number
+          id: string
+          is_active: boolean
+          name: string
+          price: number
+        }
+        Insert: {
+          business_id: string
+          created_at?: string
+          deposit_amount?: number
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_active?: boolean
+          name: string
+          price?: number
+        }
+        Update: {
+          business_id?: string
+          created_at?: string
+          deposit_amount?: number
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_active?: boolean
+          name?: string
+          price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
