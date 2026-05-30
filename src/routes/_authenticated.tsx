@@ -9,14 +9,15 @@ export const Route = createFileRoute("/_authenticated")({
   component: AuthLayout,
 });
 
-const NAV = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; end?: boolean };
+const NAV: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/dashboard/bookings", label: "Bookings", icon: CalendarDays },
   { to: "/dashboard/services", label: "Services", icon: Scissors },
   { to: "/dashboard/availability", label: "Availability", icon: Clock },
   { to: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { to: "/dashboard/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 function AuthLayout() {
   const navigate = useNavigate();

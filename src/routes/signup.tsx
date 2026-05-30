@@ -48,17 +48,21 @@ function SignupPage() {
       const user = auth.user;
       if (!user) throw new Error("Account created — check your email to confirm, then log in.");
       const slug = await uniqueSlug(slugify(form.businessName));
-      const { error: bizErr } = await supabase.from("businesses").insert({
-        owner_id: user.id,
-        name: form.businessName,
-        slug,
-        category: form.category,
-      });
-      if (bizErr) throw bizErr;
-      // Default availability Mon–Fri 9–17
+      const { data: bizRow, error: bizErr } = await supabase
+        .from("businesses")
+        .insert({
+          owner_id: user.id,
+          name: form.businessName,
+          slug,
+          category: form.category,
+        })
+        .select("id")
+        .single();
+      if (bizErr || !bizRow) throw bizErr ?? new Error("Could not create business");
+      // Default availability Mon–Fri 9–17, weekends off
       await supabase.from("availability").insert(
         [0,1,2,3,4,5,6].map(d => ({
-          business_id: (await supabase.from("businesses").select("id").eq("slug", slug).single()).data?.id,
+          business_id: bizRow.id,
           day_of_week: d,
           start_time: "09:00",
           end_time: "17:00",
