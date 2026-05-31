@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/")({
 
 function statusColor(s: string) {
   if (s === "confirmed") return "bg-[color:var(--success)]/15 text-[color:var(--success)] border-transparent";
-  if (s === "pending") return "bg-[color:var(--warning)]/15 text-[color:var(--warning)] border-transparent";
+  if (s === "pending" || s === "pending_cash") return "bg-[color:var(--warning)]/15 text-[color:var(--warning)] border-transparent";
   if (s === "completed") return "bg-primary/10 text-primary border-transparent";
   return "bg-destructive/15 text-destructive border-transparent";
 }
@@ -60,7 +60,7 @@ function Home() {
           <Button variant="outline" onClick={() => { navigator.clipboard.writeText(link); toast.success("Booking link copied"); }}>
             <Copy className="h-4 w-4 mr-2" /> Share booking link
           </Button>
-          <Button onClick={() => location.assign("/dashboard/services")}><Plus className="h-4 w-4 mr-2" /> Add service</Button>
+          <Button onClick={() => location.assign("/dashboard/services")} className="bg-gradient-primary glow-primary hover:glow-primary-strong transition-smooth"><Plus className="h-4 w-4 mr-2" /> Add service</Button>
         </div>
       </div>
 
@@ -97,12 +97,12 @@ function Home() {
 
 function Metric({ icon: Icon, label, value }: { icon: typeof CalendarDays; label: string; value: string }) {
   return (
-    <Card className="p-5 rounded-xl">
+    <Card className="p-5 rounded-xl border-gradient-top relative overflow-hidden">
       <div className="flex items-center justify-between">
         <span className="text-xs text-muted-foreground">{label}</span>
-        <Icon className="h-4 w-4 text-muted-foreground" />
+        <Icon className="h-4 w-4 text-primary" />
       </div>
-      <p className="text-2xl font-semibold mt-2">{value}</p>
+      <p className="text-2xl font-bold mt-2">{value}</p>
     </Card>
   );
 }

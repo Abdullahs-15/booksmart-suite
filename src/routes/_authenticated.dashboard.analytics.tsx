@@ -12,7 +12,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/analytics")({
   component: AnalyticsPage,
 });
 
-const COLORS = ["#6366F1", "#10B981", "#F59E0B", "#EF4444"];
+const COLORS = ["#6366F1", "#06B6D4", "#8B5CF6", "#10B981"];
 
 function AnalyticsPage() {
   const { business } = useMyBusiness();
@@ -80,7 +80,7 @@ function AnalyticsPage() {
             <div className="h-64">
               <ResponsiveContainer>
                 <LineChart data={last30}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1E1E2E" />
                   <XAxis dataKey="date" tick={{ fontSize: 11 }} />
                   <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
                   <Tooltip />
@@ -94,7 +94,7 @@ function AnalyticsPage() {
             <div className="h-64">
               <ResponsiveContainer>
                 <BarChart data={revBySvc}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1E1E2E" />
                   <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip formatter={(v: number) => `$${v.toFixed(2)}`} />

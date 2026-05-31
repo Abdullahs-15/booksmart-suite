@@ -32,7 +32,9 @@ export interface Availability {
   is_available: boolean;
 }
 
-export type BookingStatus = "pending" | "confirmed" | "cancelled" | "completed";
+export type BookingStatus = "pending" | "confirmed" | "cancelled" | "completed" | "pending_cash";
+
+export type PaymentMethod = "stripe" | "cash";
 
 export interface Booking {
   id: string;
@@ -48,6 +50,23 @@ export interface Booking {
   total_price: number;
   deposit_paid: number;
   notes: string;
+  created_at: string;
+  payment_method: PaymentMethod;
+  discount_id: string | null;
+  discount_applied: number | null;
+}
+
+export interface Discount {
+  id: string;
+  business_id: string;
+  customer_email: string;
+  customer_name: string;
+  discount_type: "percentage" | "fixed";
+  discount_value: number;
+  reason: string;
+  is_active: boolean;
+  valid_until: string | null;
+  times_used: number;
   created_at: string;
 }
 
