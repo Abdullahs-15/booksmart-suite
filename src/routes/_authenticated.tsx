@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, Link, useNavigate, useRouterState } from "@tan
 import { useEffect } from "react";
 import { useAuth, useMyBusiness } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
-import { Sparkles, LayoutDashboard, CalendarDays, Scissors, Clock, BarChart3, Settings, LogOut } from "lucide-react";
+import { Sparkles, LayoutDashboard, CalendarDays, Scissors, Clock, BarChart3, Settings, LogOut, Percent } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -16,6 +16,7 @@ const NAV: NavItem[] = [
   { to: "/dashboard/services", label: "Services", icon: Scissors },
   { to: "/dashboard/availability", label: "Availability", icon: Clock },
   { to: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
+  { to: "/dashboard/discounts", label: "Discounts", icon: Percent },
   { to: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
@@ -40,9 +41,9 @@ function AuthLayout() {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-background">
-      <aside className="lg:w-64 lg:fixed lg:inset-y-0 border-b lg:border-b-0 lg:border-r border-border bg-card flex lg:flex-col">
+      <aside className="lg:w-64 lg:fixed lg:inset-y-0 border-b lg:border-b-0 lg:border-r border-border bg-sidebar flex lg:flex-col">
         <div className="px-5 h-16 flex items-center gap-2 font-semibold border-b border-border lg:w-full">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"><Sparkles className="h-4 w-4" /></span>
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-primary text-primary-foreground glow-primary"><Sparkles className="h-4 w-4" /></span>
           BookSmart
         </div>
         <nav className="flex lg:flex-col gap-1 p-2 overflow-x-auto lg:overflow-visible flex-1">
@@ -50,8 +51,10 @@ function AuthLayout() {
             const active = item.end ? pathname === item.to : pathname.startsWith(item.to);
             return (
               <Link key={item.to} to={item.to} className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm whitespace-nowrap",
-                active ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm whitespace-nowrap transition-smooth relative",
+                active
+                  ? "bg-primary/10 text-primary font-medium lg:border-l-2 lg:border-primary lg:pl-[10px] glow-primary"
+                  : "text-muted-foreground hover:bg-accent/40 hover:text-foreground"
               )}>
                 <item.icon className="h-4 w-4" />
                 {item.label}
