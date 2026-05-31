@@ -19,28 +19,32 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="border-b border-border bg-card/60 backdrop-blur sticky top-0 z-10">
+      <header className="border-b border-border bg-card/40 backdrop-blur sticky top-0 z-10">
         <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 font-semibold">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"><Sparkles className="h-4 w-4" /></span>
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-primary text-primary-foreground glow-primary"><Sparkles className="h-4 w-4" /></span>
             BookSmart
           </Link>
           <nav className="flex items-center gap-2">
             <Link to="/login"><Button variant="ghost">Log in</Button></Link>
-            <Link to="/signup"><Button>Start free</Button></Link>
+            <Link to="/signup"><Button className="bg-gradient-primary glow-primary hover:glow-primary-strong transition-smooth">Start free</Button></Link>
           </nav>
         </div>
       </header>
 
-      <section className="mx-auto max-w-4xl px-6 pt-24 pb-20 text-center">
-        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
-          Free during beta
-        </span>
-        <h1 className="mt-6 text-5xl sm:text-6xl font-semibold tracking-tight">The booking platform for modern service businesses</h1>
-        <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">Accept appointments and deposits online. Set your hours once, share your link, and let BookSmart fill your calendar.</p>
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <Link to="/signup"><Button size="lg">Start for free</Button></Link>
-          <a href="#features"><Button size="lg" variant="outline">See how it works</Button></a>
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+        <div className="absolute inset-0 bg-radial-glow pointer-events-none" />
+        <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-24 text-center">
+          <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs text-primary glow-primary">
+            Free during beta
+          </span>
+          <h1 className="mt-6 text-5xl sm:text-6xl font-bold tracking-tight">The booking platform for <span className="bg-gradient-to-r from-primary to-[#8B5CF6] bg-clip-text text-transparent">modern service businesses</span></h1>
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">Accept appointments and deposits online. Set your hours once, share your link, and let BookSmart fill your calendar.</p>
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <Link to="/signup"><Button size="lg" className="bg-gradient-primary glow-primary hover:glow-primary-strong transition-smooth">Start for free</Button></Link>
+            <a href="#features"><Button size="lg" variant="outline">See how it works</Button></a>
+          </div>
         </div>
       </section>
 
@@ -90,16 +94,16 @@ function Index() {
       </section>
 
       <section className="mx-auto max-w-md px-6 py-16">
-        <Card className="p-8 rounded-xl border-2 border-primary/30">
+        <Card className="p-8 rounded-xl border-2 border-primary/30 glow-primary">
           <p className="text-sm font-medium text-primary">Beta</p>
-          <h3 className="mt-1 text-3xl font-semibold">Free during beta</h3>
+          <h3 className="mt-1 text-3xl font-bold">Free during beta</h3>
           <p className="mt-1 text-sm text-muted-foreground">Everything you need, no card required.</p>
           <ul className="mt-6 space-y-2 text-sm">
             {["Unlimited bookings","Custom booking page","Stripe deposits","Email confirmations","Analytics dashboard","Mobile-friendly"].map(f => (
               <li key={f} className="flex items-center gap-2"><Check className="h-4 w-4 text-[color:var(--success)]" />{f}</li>
             ))}
           </ul>
-          <Link to="/signup" className="block mt-6"><Button className="w-full" size="lg">Start for free</Button></Link>
+          <Link to="/signup" className="block mt-6"><Button className="w-full bg-gradient-primary glow-primary hover:glow-primary-strong transition-smooth" size="lg">Start for free</Button></Link>
         </Card>
       </section>
 
