@@ -75,8 +75,15 @@ function BookingsPage() {
       </div>
       <Tabs value={filter} onValueChange={setFilter}>
         <TabsList>
-          {["all","confirmed","pending_cash","pending","completed","cancelled"].map(s => (
-            <TabsTrigger key={s} value={s} className="capitalize">{s}</TabsTrigger>
+          {[
+            { v: "all", l: "All" },
+            { v: "confirmed", l: "Confirmed" },
+            { v: "pending_cash", l: "Cash" },
+            { v: "pending", l: "Pending" },
+            { v: "completed", l: "Completed" },
+            { v: "cancelled", l: "Cancelled" },
+          ].map(s => (
+            <TabsTrigger key={s.v} value={s.v}>{s.l}</TabsTrigger>
           ))}
         </TabsList>
       </Tabs>
