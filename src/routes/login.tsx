@@ -32,15 +32,15 @@ function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-background">
-      <div className="w-full max-w-md">
-        <Link to="/" className="flex items-center justify-center gap-2 mb-6 font-semibold">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"><Sparkles className="h-4 w-4" /></span>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-[440px]">
+        <Link to="/" className="flex items-center justify-center gap-2 mb-6 font-semibold text-white text-lg">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/30"><Sparkles className="h-4 w-4" /></span>
           BookSmart
         </Link>
-        <Card className="p-8 rounded-xl">
-          <h1 className="text-2xl font-semibold">Welcome back</h1>
-          <p className="text-sm text-muted-foreground mt-1">Log in to your BookSmart dashboard.</p>
+        <Card className="glass-strong p-8">
+          <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
+          <p className="text-sm text-white/55 mt-1">Log in to your BookSmart dashboard.</p>
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -49,14 +49,14 @@ function LoginPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <button type="button" className="text-xs text-muted-foreground hover:text-primary" onClick={() => toast.info("Password reset coming soon.")}>Forgot?</button>
+                <button type="button" className="text-xs text-white/40 hover:text-indigo-300 transition-colors" onClick={() => toast.info("Password reset coming soon.")}>Forgot?</button>
               </div>
               <Input id="password" type="password" required value={password} onChange={e => setPassword(e.target.value)} />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>{loading ? "Signing in..." : "Sign in"}</Button>
           </form>
-          <p className="text-sm text-muted-foreground mt-6 text-center">
-            No account? <Link to="/signup" className="text-primary font-medium">Create one</Link>
+          <p className="text-sm text-white/50 mt-6 text-center">
+            No account? <Link to="/signup" className="text-indigo-300 font-medium hover:text-indigo-200 transition-colors">Create one</Link>
           </p>
         </Card>
       </div>

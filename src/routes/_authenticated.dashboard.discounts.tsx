@@ -126,47 +126,47 @@ function DiscountsPage() {
     <div className="space-y-6">
       <div className="flex items-end justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-semibold">Customer Discounts</h1>
-          <p className="text-sm text-muted-foreground">Reward loyal customers with automatic discounts at checkout.</p>
+          <h1 className="text-2xl font-semibold text-white">Customer Discounts</h1>
+          <p className="text-sm text-white/70">Reward loyal customers with automatic discounts at checkout.</p>
         </div>
-        <Button onClick={openNew} className="bg-gradient-primary glow-primary"><Plus className="h-4 w-4 mr-2" />Add Discount</Button>
+        <Button onClick={openNew} className="bg-gradient-to-r from-indigo-500 to-violet-600 text-white hover:from-indigo-600 hover:to-violet-700"><Plus className="h-4 w-4 mr-2" />Add Discount</Button>
       </div>
 
       <Tabs value={filter} onValueChange={setFilter}>
-        <TabsList>
-          <TabsTrigger value="all">All</TabsTrigger>
-          <TabsTrigger value="active">Active</TabsTrigger>
-          <TabsTrigger value="expired">Expired</TabsTrigger>
+        <TabsList className="bg-white/10 border-white/20">
+          <TabsTrigger value="all" className="text-white/70 data-[state=active]:text-white data-[state=active]:bg-indigo-500/30">All</TabsTrigger>
+          <TabsTrigger value="active" className="text-white/70 data-[state=active]:text-white data-[state=active]:bg-indigo-500/30">Active</TabsTrigger>
+          <TabsTrigger value="expired" className="text-white/70 data-[state=active]:text-white data-[state=active]:bg-indigo-500/30">Expired</TabsTrigger>
         </TabsList>
       </Tabs>
 
-      <Card className="rounded-xl overflow-hidden border-gradient-top">
-        <div className="hidden md:grid grid-cols-[1.2fr_1.4fr_0.6fr_0.6fr_1fr_0.6fr_0.9fr_0.8fr_auto] gap-3 px-4 py-3 text-xs font-medium text-muted-foreground bg-muted/40">
+      <Card className="rounded-xl overflow-hidden glass glass-strong border-white/20">
+        <div className="hidden md:grid grid-cols-[1.2fr_1.4fr_0.6fr_0.6fr_1fr_0.6fr_0.9fr_0.8fr_auto] gap-3 px-4 py-3 text-xs font-medium text-white/60 bg-white/5">
           <div>Customer</div><div>Email</div><div>Type</div><div>Value</div><div>Reason</div><div>Used</div><div>Valid until</div><div>Status</div><div></div>
         </div>
-        <div className="divide-y divide-border">
+        <div className="divide-y divide-white/10">
           {filtered.length === 0 ? (
-            <div className="p-10 text-center text-sm text-muted-foreground">No discounts yet.</div>
+            <div className="p-10 text-center text-sm text-white/60">No discounts yet.</div>
           ) : filtered.map(d => {
             const expired = isExpired(d);
             return (
-              <div key={d.id} className="grid md:grid-cols-[1.2fr_1.4fr_0.6fr_0.6fr_1fr_0.6fr_0.9fr_0.8fr_auto] gap-3 px-4 py-3 items-center text-sm">
+              <div key={d.id} className="grid md:grid-cols-[1.2fr_1.4fr_0.6fr_0.6fr_1fr_0.6fr_0.9fr_0.8fr_auto] gap-3 px-4 py-3 items-center text-sm text-white">
                 <div className="font-medium">{d.customer_name || "—"}</div>
-                <div className="text-muted-foreground truncate">{d.customer_email}</div>
-                <div className="capitalize">{d.discount_type}</div>
-                <div className="font-medium text-primary">{formatValue(d)}</div>
-                <div className="text-muted-foreground truncate">{d.reason || "—"}</div>
-                <div>{d.times_used}</div>
-                <div className="text-muted-foreground">{d.valid_until ?? "—"}</div>
+                <div className="text-white/70 truncate">{d.customer_email}</div>
+                <div className="capitalize text-white/85">{d.discount_type}</div>
+                <div className="font-medium text-indigo-400">{formatValue(d)}</div>
+                <div className="text-white/70 truncate">{d.reason || "—"}</div>
+                <div className="text-white/85">{d.times_used}</div>
+                <div className="text-white/70">{d.valid_until ?? "—"}</div>
                 <div>
                   {expired || !d.is_active
-                    ? <Badge variant="outline" className="bg-muted text-muted-foreground border-transparent">{!d.is_active ? "Inactive" : "Expired"}</Badge>
-                    : <Badge variant="outline" className="bg-[color:var(--success)]/15 text-[color:var(--success)] border-transparent">Active</Badge>}
+                    ? <Badge variant="outline" className="bg-white/10 text-white/70 border-transparent">{!d.is_active ? "Inactive" : "Expired"}</Badge>
+                    : <Badge variant="outline" className="bg-emerald-500/30 text-emerald-300 border-transparent">Active</Badge>}
                 </div>
                 <div className="flex items-center gap-1 justify-end">
-                  <Button variant="ghost" size="icon" onClick={() => openEdit(d)}><Pencil className="h-4 w-4" /></Button>
-                  <Button variant="ghost" size="icon" onClick={() => toggleActive(d)}><Power className="h-4 w-4" /></Button>
-                  <Button variant="ghost" size="icon" onClick={() => remove(d)}><Trash2 className="h-4 w-4" /></Button>
+                  <Button variant="ghost" size="icon" className="text-white/70 hover:text-white hover:bg-white/10" onClick={() => openEdit(d)}><Pencil className="h-4 w-4" /></Button>
+                  <Button variant="ghost" size="icon" className="text-white/70 hover:text-white hover:bg-white/10" onClick={() => toggleActive(d)}><Power className="h-4 w-4" /></Button>
+                  <Button variant="ghost" size="icon" className="text-white/70 hover:text-white hover:bg-white/10" onClick={() => remove(d)}><Trash2 className="h-4 w-4" /></Button>
                 </div>
               </div>
             );
@@ -175,33 +175,33 @@ function DiscountsPage() {
       </Card>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="bg-white/10 border-white/20 text-white">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2"><Percent className="h-4 w-4 text-primary" />{editing ? "Edit discount" : "New discount"}</DialogTitle>
+            <DialogTitle className="flex items-center gap-2 text-white"><Percent className="h-4 w-4 text-indigo-400" />{editing ? "Edit discount" : "New discount"}</DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1 col-span-2"><Label>Customer email</Label><Input type="email" value={form.customer_email} onChange={e => setForm({ ...form, customer_email: e.target.value })} /></div>
-            <div className="space-y-1 col-span-2"><Label>Customer name</Label><Input value={form.customer_name} onChange={e => setForm({ ...form, customer_name: e.target.value })} /></div>
+            <div className="space-y-1 col-span-2"><Label className="text-white/85">Customer email</Label><Input type="email" value={form.customer_email} onChange={e => setForm({ ...form, customer_email: e.target.value })} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
+            <div className="space-y-1 col-span-2"><Label className="text-white/85">Customer name</Label><Input value={form.customer_name} onChange={e => setForm({ ...form, customer_name: e.target.value })} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
             <div className="space-y-1">
-              <Label>Type</Label>
+              <Label className="text-white/85">Type</Label>
               <Select value={form.discount_type} onValueChange={v => setForm({ ...form, discount_type: v as "percentage" | "fixed" })}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="percentage">Percentage</SelectItem>
-                  <SelectItem value="fixed">Fixed amount</SelectItem>
+                <SelectTrigger className="bg-white/10 border-white/20 text-white"><SelectValue /></SelectTrigger>
+                <SelectContent className="bg-slate-800 border-white/20">
+                  <SelectItem value="percentage" className="text-white">Percentage</SelectItem>
+                  <SelectItem value="fixed" className="text-white">Fixed amount</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-1">
-              <Label>{form.discount_type === "percentage" ? "Percent (e.g. 20)" : "Amount in $"}</Label>
-              <Input type="number" value={form.discount_value} onChange={e => setForm({ ...form, discount_value: e.target.value })} />
+              <Label className="text-white/85">{form.discount_type === "percentage" ? "Percent (e.g. 20)" : "Amount in $"}</Label>
+              <Input type="number" value={form.discount_value} onChange={e => setForm({ ...form, discount_value: e.target.value })} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" />
             </div>
-            <div className="space-y-1 col-span-2"><Label>Reason</Label><Input value={form.reason} onChange={e => setForm({ ...form, reason: e.target.value })} placeholder="Loyal customer, Birthday, Referral…" /></div>
-            <div className="space-y-1 col-span-2"><Label>Valid until (optional)</Label><Input type="date" value={form.valid_until} onChange={e => setForm({ ...form, valid_until: e.target.value })} /></div>
+            <div className="space-y-1 col-span-2"><Label className="text-white/85">Reason</Label><Input value={form.reason} onChange={e => setForm({ ...form, reason: e.target.value })} placeholder="Loyal customer, Birthday, Referral…" className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
+            <div className="space-y-1 col-span-2"><Label className="text-white/85">Valid until (optional)</Label><Input type="date" value={form.valid_until} onChange={e => setForm({ ...form, valid_until: e.target.value })} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
-            <Button onClick={save} className="bg-gradient-primary glow-primary">{editing ? "Save" : "Create"}</Button>
+            <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20" onClick={() => setDialogOpen(false)}>Cancel</Button>
+            <Button onClick={save} className="bg-gradient-to-r from-indigo-500 to-violet-600 text-white hover:from-indigo-600 hover:to-violet-700">{editing ? "Save" : "Create"}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

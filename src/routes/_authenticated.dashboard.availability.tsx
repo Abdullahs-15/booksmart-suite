@@ -58,32 +58,32 @@ function AvailabilityPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold">Availability</h1>
-        <p className="text-sm text-muted-foreground">Set the hours customers can book each day.</p>
+        <h1 className="text-2xl font-semibold text-white">Availability</h1>
+        <p className="text-sm text-white/70">Set the hours customers can book each day.</p>
       </div>
-      <Card className="rounded-xl divide-y divide-border">
+      <Card className="rounded-xl divide-y divide-white/10 glass glass-strong border-white/20">
         {order.map(d => {
           const r = rows.find(x => x.day_of_week === d);
           if (!r) return null;
           return (
-            <div key={d} className="p-4 flex flex-wrap items-center gap-4">
+            <div key={d} className="p-4 flex flex-wrap items-center gap-4 text-white">
               <div className="w-28 font-medium">{DAYS[d]}</div>
               <Switch checked={r.is_available} onCheckedChange={v => update(d, { is_available: v })} />
               <Select value={r.start_time} onValueChange={v => update(d, { start_time: v })}>
-                <SelectTrigger className="w-32" disabled={!r.is_available}><SelectValue /></SelectTrigger>
-                <SelectContent>{TIMES.map(t => <SelectItem key={t} value={t}>{formatTime(t)}</SelectItem>)}</SelectContent>
+                <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white disabled:opacity-50" disabled={!r.is_available}><SelectValue /></SelectTrigger>
+                <SelectContent className="bg-slate-800 border-white/20">{TIMES.map(t => <SelectItem key={t} value={t} className="text-white">{formatTime(t)}</SelectItem>)}</SelectContent>
               </Select>
-              <span className="text-sm text-muted-foreground">to</span>
+              <span className="text-sm text-white/70">to</span>
               <Select value={r.end_time} onValueChange={v => update(d, { end_time: v })}>
-                <SelectTrigger className="w-32" disabled={!r.is_available}><SelectValue /></SelectTrigger>
-                <SelectContent>{TIMES.map(t => <SelectItem key={t} value={t}>{formatTime(t)}</SelectItem>)}</SelectContent>
+                <SelectTrigger className="w-32 bg-white/10 border-white/20 text-white disabled:opacity-50" disabled={!r.is_available}><SelectValue /></SelectTrigger>
+                <SelectContent className="bg-slate-800 border-white/20">{TIMES.map(t => <SelectItem key={t} value={t} className="text-white">{formatTime(t)}</SelectItem>)}</SelectContent>
               </Select>
-              {!r.is_available && <span className="text-xs text-muted-foreground">Closed</span>}
+              {!r.is_available && <span className="text-xs text-white/60">Closed</span>}
             </div>
           );
         })}
       </Card>
-      <Button onClick={save} disabled={saving}>{saving ? "Saving…" : "Save schedule"}</Button>
+      <Button onClick={save} disabled={saving} className="bg-gradient-to-r from-indigo-500 to-violet-600 text-white hover:from-indigo-600 hover:to-violet-700">{saving ? "Saving…" : "Save schedule"}</Button>
     </div>
   );
 }

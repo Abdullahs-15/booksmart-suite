@@ -58,8 +58,8 @@ function AnalyticsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold">Analytics</h1>
-        <p className="text-sm text-muted-foreground">Track bookings and revenue over time.</p>
+        <h1 className="text-2xl font-semibold text-white">Analytics</h1>
+        <p className="text-sm text-white/70">Track bookings and revenue over time.</p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Stat label="Total bookings" value={String(bookings.length)} />
@@ -69,49 +69,49 @@ function AnalyticsPage() {
       </div>
 
       {empty ? (
-        <Card className="p-16 text-center rounded-xl">
-          <p className="font-medium">No bookings yet</p>
-          <p className="text-sm text-muted-foreground mt-1">Share your booking page to start collecting data.</p>
+        <Card className="p-16 text-center rounded-xl glass glass-strong border-white/20">
+          <p className="font-medium text-white">No bookings yet</p>
+          <p className="text-sm text-white/70 mt-1">Share your booking page to start collecting data.</p>
         </Card>
       ) : (
         <div className="grid lg:grid-cols-2 gap-4">
-          <Card className="p-5 rounded-xl">
-            <h3 className="font-semibold mb-4">Bookings (last 30 days)</h3>
+          <Card className="p-5 rounded-xl glass glass-strong border-white/20">
+            <h3 className="font-semibold mb-4 text-white">Bookings (last 30 days)</h3>
             <div className="h-64">
               <ResponsiveContainer>
                 <LineChart data={last30}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1E1E2E" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
-                  <Tooltip />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <XAxis dataKey="date" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.6)" }} />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 11, fill: "rgba(255,255,255,0.6)" }} />
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(15,23,42,0.9)", border: "1px solid rgba(255,255,255,0.2)", color: "white" }} />
                   <Line type="monotone" dataKey="count" stroke="#6366F1" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </Card>
-          <Card className="p-5 rounded-xl">
-            <h3 className="font-semibold mb-4">Revenue by service</h3>
+          <Card className="p-5 rounded-xl glass glass-strong border-white/20">
+            <h3 className="font-semibold mb-4 text-white">Revenue by service</h3>
             <div className="h-64">
               <ResponsiveContainer>
                 <BarChart data={revBySvc}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1E1E2E" />
-                  <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} />
-                  <Tooltip formatter={(v: number) => `$${v.toFixed(2)}`} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.6)" }} />
+                  <YAxis tick={{ fontSize: 11, fill: "rgba(255,255,255,0.6)" }} />
+                  <Tooltip formatter={(v: number) => `$${v.toFixed(2)}`} contentStyle={{ backgroundColor: "rgba(15,23,42,0.9)", border: "1px solid rgba(255,255,255,0.2)", color: "white" }} />
                   <Bar dataKey="value" fill="#6366F1" radius={[6,6,0,0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </Card>
-          <Card className="p-5 rounded-xl lg:col-span-2">
-            <h3 className="font-semibold mb-4">Status breakdown</h3>
+          <Card className="p-5 rounded-xl lg:col-span-2 glass glass-strong border-white/20">
+            <h3 className="font-semibold mb-4 text-white">Status breakdown</h3>
             <div className="h-64">
               <ResponsiveContainer>
                 <PieChart>
                   <Pie data={statusCounts} dataKey="value" nameKey="name" innerRadius={60} outerRadius={90}>
                     {statusCounts.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
                   </Pie>
-                  <Tooltip />
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(15,23,42,0.9)", border: "1px solid rgba(255,255,255,0.2)", color: "white" }} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -124,9 +124,9 @@ function AnalyticsPage() {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <Card className="p-5 rounded-xl">
-      <p className="text-xs text-muted-foreground">{label}</p>
-      <p className="text-2xl font-semibold mt-1">{value}</p>
+    <Card className="p-5 rounded-xl glass glass-strong border-white/20">
+      <p className="text-xs text-white/70">{label}</p>
+      <p className="text-2xl font-semibold mt-1 text-white">{value}</p>
     </Card>
   );
 }

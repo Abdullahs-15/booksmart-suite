@@ -81,25 +81,26 @@ function SignupPage() {
 
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
-      <aside className="hidden lg:flex flex-col justify-between bg-primary text-primary-foreground p-12">
-        <Link to="/" className="flex items-center gap-2 font-semibold">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/15"><Sparkles className="h-4 w-4" /></span>
+      <aside className="hidden lg:flex flex-col justify-between glass p-12 text-white rounded-none border-r border-white/10">
+        <Link to="/" className="flex items-center gap-2 font-semibold text-lg">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/30"><Sparkles className="h-4 w-4" /></span>
           BookSmart
         </Link>
         <div>
           <h2 className="text-3xl font-semibold leading-tight">Start taking online bookings today.</h2>
-          <ul className="mt-8 space-y-3 text-sm">
+          <ul className="mt-8 space-y-3 text-sm text-white/80">
             {["A polished booking page in minutes","Stripe deposits, no chargebacks","Cuts no-shows by 50% on average","Free during beta — no card required"].map(b => (
-              <li key={b} className="flex items-center gap-2"><Check className="h-4 w-4" />{b}</li>
+              <li key={b} className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" />{b}</li>
             ))}
           </ul>
         </div>
-        <p className="text-xs opacity-70">© {new Date().getFullYear()} BookSmart</p>
+        <p className="text-xs text-white/40">© {new Date().getFullYear()} BookSmart</p>
       </aside>
-      <main className="flex items-center justify-center p-6 bg-background">
-        <div className="w-full max-w-md">
-          <h1 className="text-2xl font-semibold">Create your account</h1>
-          <p className="text-sm text-muted-foreground mt-1">Already have one? <Link to="/login" className="text-primary font-medium">Log in</Link></p>
+      <main className="flex items-center justify-center p-6 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 via-transparent to-transparent pointer-events-none" />
+        <div className="w-full max-w-md relative">
+          <h1 className="text-2xl font-semibold text-white">Create your account</h1>
+          <p className="text-sm text-white/55 mt-1">Already have one? <Link to="/login" className="text-indigo-300 font-medium hover:text-indigo-200 transition-colors">Log in</Link></p>
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
             <div className="space-y-2"><Label>Full name</Label><Input required value={form.fullName} onChange={e => setForm(f => ({...f, fullName: e.target.value}))} /></div>
             <div className="space-y-2"><Label>Business name</Label><Input required value={form.businessName} onChange={e => setForm(f => ({...f, businessName: e.target.value}))} /></div>

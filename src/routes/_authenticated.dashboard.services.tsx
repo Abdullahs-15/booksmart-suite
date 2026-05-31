@@ -92,47 +92,47 @@ function ServicesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold">Services</h1>
-          <p className="text-sm text-muted-foreground">What you offer and how much it costs.</p>
+          <h1 className="text-2xl font-semibold text-white">Services</h1>
+          <p className="text-sm text-white/70">What you offer and how much it costs.</p>
         </div>
         <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild><Button onClick={openNew}><Plus className="h-4 w-4 mr-2" />Add service</Button></DialogTrigger>
-          <DialogContent>
-            <DialogHeader><DialogTitle>{draft.id ? "Edit service" : "New service"}</DialogTitle></DialogHeader>
+          <DialogTrigger asChild><Button onClick={openNew} className="bg-gradient-to-r from-indigo-500 to-violet-600 text-white hover:from-indigo-600 hover:to-violet-700"><Plus className="h-4 w-4 mr-2" />Add service</Button></DialogTrigger>
+          <DialogContent className="bg-white/10 border-white/20 text-white">
+            <DialogHeader><DialogTitle className="text-white">{draft.id ? "Edit service" : "New service"}</DialogTitle></DialogHeader>
             <div className="space-y-4">
-              <div className="space-y-2"><Label>Name</Label><Input value={draft.name} onChange={e => setDraft(d => ({...d, name: e.target.value}))} /></div>
-              <div className="space-y-2"><Label>Description</Label><Textarea value={draft.description} onChange={e => setDraft(d => ({...d, description: e.target.value}))} /></div>
+              <div className="space-y-2"><Label className="text-white/85">Name</Label><Input value={draft.name} onChange={e => setDraft(d => ({...d, name: e.target.value}))} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
+              <div className="space-y-2"><Label className="text-white/85">Description</Label><Textarea value={draft.description} onChange={e => setDraft(d => ({...d, description: e.target.value}))} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
               <div className="grid grid-cols-3 gap-3">
-                <div className="space-y-2"><Label>Minutes</Label><Input type="number" value={draft.duration_minutes} onChange={e => setDraft(d => ({...d, duration_minutes: Number(e.target.value)}))} /></div>
-                <div className="space-y-2"><Label>Price ($)</Label><Input type="number" step="0.01" value={draft.price} onChange={e => setDraft(d => ({...d, price: Number(e.target.value)}))} /></div>
-                <div className="space-y-2"><Label>Deposit ($)</Label><Input type="number" step="0.01" value={draft.deposit_amount} onChange={e => setDraft(d => ({...d, deposit_amount: Number(e.target.value)}))} /></div>
+                <div className="space-y-2"><Label className="text-white/85">Minutes</Label><Input type="number" value={draft.duration_minutes} onChange={e => setDraft(d => ({...d, duration_minutes: Number(e.target.value)}))} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
+                <div className="space-y-2"><Label className="text-white/85">Price ($)</Label><Input type="number" step="0.01" value={draft.price} onChange={e => setDraft(d => ({...d, price: Number(e.target.value)}))} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
+                <div className="space-y-2"><Label className="text-white/85">Deposit ($)</Label><Input type="number" step="0.01" value={draft.deposit_amount} onChange={e => setDraft(d => ({...d, deposit_amount: Number(e.target.value)}))} className="bg-white/10 border-white/20 text-white placeholder:text-white/40" /></div>
               </div>
-              <div className="flex items-center justify-between"><Label>Active</Label><Switch checked={draft.is_active} onCheckedChange={v => setDraft(d => ({...d, is_active: v}))} /></div>
+              <div className="flex items-center justify-between"><Label className="text-white/85">Active</Label><Switch checked={draft.is_active} onCheckedChange={v => setDraft(d => ({...d, is_active: v}))} /></div>
             </div>
-            <DialogFooter><Button onClick={save}>Save</Button></DialogFooter>
+            <DialogFooter><Button onClick={save} className="bg-gradient-to-r from-indigo-500 to-violet-600 text-white hover:from-indigo-600 hover:to-violet-700">Save</Button></DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
 
       {services.length === 0 ? (
-        <Card className="p-12 text-center text-sm text-muted-foreground rounded-xl">No services yet. Add one to start taking bookings.</Card>
+        <Card className="p-12 text-center text-sm text-white/60 rounded-xl glass glass-strong border-white/20">No services yet. Add one to start taking bookings.</Card>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map(s => (
-            <Card key={s.id} className="p-5 rounded-xl flex flex-col">
+            <Card key={s.id} className="p-5 rounded-xl flex flex-col glass glass-strong border-white/20">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="font-semibold">{s.name}</h3>
+                <h3 className="font-semibold text-white">{s.name}</h3>
                 <Switch checked={s.is_active} onCheckedChange={() => toggleActive(s)} />
               </div>
-              {s.description && <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{s.description}</p>}
+              {s.description && <p className="text-sm text-white/70 mt-1 line-clamp-2">{s.description}</p>}
               <div className="mt-4 flex items-center gap-3 text-sm">
-                <span className="inline-flex items-center gap-1 text-muted-foreground"><Clock className="h-3.5 w-3.5" />{s.duration_minutes} min</span>
-                <span className="font-medium">{formatPrice(s.price)}</span>
-                <span className="text-xs text-muted-foreground">deposit {formatPrice(s.deposit_amount)}</span>
+                <span className="inline-flex items-center gap-1 text-white/70"><Clock className="h-3.5 w-3.5" />{s.duration_minutes} min</span>
+                <span className="font-medium text-white">{formatPrice(s.price)}</span>
+                <span className="text-xs text-white/60">deposit {formatPrice(s.deposit_amount)}</span>
               </div>
               <div className="mt-4 flex gap-2">
-                <Button size="sm" variant="outline" onClick={() => openEdit(s)}><Pencil className="h-3.5 w-3.5 mr-1" />Edit</Button>
-                <Button size="sm" variant="ghost" onClick={() => remove(s)}><Trash2 className="h-3.5 w-3.5 mr-1" />Delete</Button>
+                <Button size="sm" variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20" onClick={() => openEdit(s)}><Pencil className="h-3.5 w-3.5 mr-1" />Edit</Button>
+                <Button size="sm" variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10" onClick={() => remove(s)}><Trash2 className="h-3.5 w-3.5 mr-1" />Delete</Button>
               </div>
             </Card>
           ))}
