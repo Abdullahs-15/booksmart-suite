@@ -19,6 +19,7 @@ import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authe
 import { Route as BookSlugSuccessRouteImport } from './routes/book.$slug.success'
 import { Route as AuthenticatedDashboardSettingsRouteImport } from './routes/_authenticated.dashboard.settings'
 import { Route as AuthenticatedDashboardServicesRouteImport } from './routes/_authenticated.dashboard.services'
+import { Route as AuthenticatedDashboardDiscountsRouteImport } from './routes/_authenticated.dashboard.discounts'
 import { Route as AuthenticatedDashboardBookingsRouteImport } from './routes/_authenticated.dashboard.bookings'
 import { Route as AuthenticatedDashboardAvailabilityRouteImport } from './routes/_authenticated.dashboard.availability'
 import { Route as AuthenticatedDashboardAnalyticsRouteImport } from './routes/_authenticated.dashboard.analytics'
@@ -75,6 +76,12 @@ const AuthenticatedDashboardServicesRoute =
     path: '/services',
     getParentRoute: () => AuthenticatedDashboardRoute,
   } as any)
+const AuthenticatedDashboardDiscountsRoute =
+  AuthenticatedDashboardDiscountsRouteImport.update({
+    id: '/discounts',
+    path: '/discounts',
+    getParentRoute: () => AuthenticatedDashboardRoute,
+  } as any)
 const AuthenticatedDashboardBookingsRoute =
   AuthenticatedDashboardBookingsRouteImport.update({
     id: '/bookings',
@@ -103,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
   '/dashboard/availability': typeof AuthenticatedDashboardAvailabilityRoute
   '/dashboard/bookings': typeof AuthenticatedDashboardBookingsRoute
+  '/dashboard/discounts': typeof AuthenticatedDashboardDiscountsRoute
   '/dashboard/services': typeof AuthenticatedDashboardServicesRoute
   '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
   '/book/$slug/success': typeof BookSlugSuccessRoute
@@ -116,6 +124,7 @@ export interface FileRoutesByTo {
   '/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
   '/dashboard/availability': typeof AuthenticatedDashboardAvailabilityRoute
   '/dashboard/bookings': typeof AuthenticatedDashboardBookingsRoute
+  '/dashboard/discounts': typeof AuthenticatedDashboardDiscountsRoute
   '/dashboard/services': typeof AuthenticatedDashboardServicesRoute
   '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
   '/book/$slug/success': typeof BookSlugSuccessRoute
@@ -132,6 +141,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard/analytics': typeof AuthenticatedDashboardAnalyticsRoute
   '/_authenticated/dashboard/availability': typeof AuthenticatedDashboardAvailabilityRoute
   '/_authenticated/dashboard/bookings': typeof AuthenticatedDashboardBookingsRoute
+  '/_authenticated/dashboard/discounts': typeof AuthenticatedDashboardDiscountsRoute
   '/_authenticated/dashboard/services': typeof AuthenticatedDashboardServicesRoute
   '/_authenticated/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
   '/book/$slug/success': typeof BookSlugSuccessRoute
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/availability'
     | '/dashboard/bookings'
+    | '/dashboard/discounts'
     | '/dashboard/services'
     | '/dashboard/settings'
     | '/book/$slug/success'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/availability'
     | '/dashboard/bookings'
+    | '/dashboard/discounts'
     | '/dashboard/services'
     | '/dashboard/settings'
     | '/book/$slug/success'
@@ -176,6 +188,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard/analytics'
     | '/_authenticated/dashboard/availability'
     | '/_authenticated/dashboard/bookings'
+    | '/_authenticated/dashboard/discounts'
     | '/_authenticated/dashboard/services'
     | '/_authenticated/dashboard/settings'
     | '/book/$slug/success'
@@ -262,6 +275,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardServicesRouteImport
       parentRoute: typeof AuthenticatedDashboardRoute
     }
+    '/_authenticated/dashboard/discounts': {
+      id: '/_authenticated/dashboard/discounts'
+      path: '/discounts'
+      fullPath: '/dashboard/discounts'
+      preLoaderRoute: typeof AuthenticatedDashboardDiscountsRouteImport
+      parentRoute: typeof AuthenticatedDashboardRoute
+    }
     '/_authenticated/dashboard/bookings': {
       id: '/_authenticated/dashboard/bookings'
       path: '/bookings'
@@ -290,6 +310,7 @@ interface AuthenticatedDashboardRouteChildren {
   AuthenticatedDashboardAnalyticsRoute: typeof AuthenticatedDashboardAnalyticsRoute
   AuthenticatedDashboardAvailabilityRoute: typeof AuthenticatedDashboardAvailabilityRoute
   AuthenticatedDashboardBookingsRoute: typeof AuthenticatedDashboardBookingsRoute
+  AuthenticatedDashboardDiscountsRoute: typeof AuthenticatedDashboardDiscountsRoute
   AuthenticatedDashboardServicesRoute: typeof AuthenticatedDashboardServicesRoute
   AuthenticatedDashboardSettingsRoute: typeof AuthenticatedDashboardSettingsRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
@@ -301,6 +322,7 @@ const AuthenticatedDashboardRouteChildren: AuthenticatedDashboardRouteChildren =
     AuthenticatedDashboardAvailabilityRoute:
       AuthenticatedDashboardAvailabilityRoute,
     AuthenticatedDashboardBookingsRoute: AuthenticatedDashboardBookingsRoute,
+    AuthenticatedDashboardDiscountsRoute: AuthenticatedDashboardDiscountsRoute,
     AuthenticatedDashboardServicesRoute: AuthenticatedDashboardServicesRoute,
     AuthenticatedDashboardSettingsRoute: AuthenticatedDashboardSettingsRoute,
     AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
@@ -345,3 +367,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
