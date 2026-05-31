@@ -12,7 +12,7 @@ export const Route = createFileRoute("/_authenticated/dashboard/analytics")({
   component: AnalyticsPage,
 });
 
-const COLORS = ["#6366F1", "#10B981", "#F59E0B", "#EF4444"];
+const COLORS = ["#6366F1", "#06B6D4", "#8B5CF6", "#10B981"];
 
 function AnalyticsPage() {
   const { business } = useMyBusiness();
