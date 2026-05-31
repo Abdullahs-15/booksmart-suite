@@ -59,8 +59,11 @@ export type Database = {
           customer_name: string
           customer_phone: string | null
           deposit_paid: number
+          discount_applied: number | null
+          discount_id: string | null
           id: string
           notes: string | null
+          payment_method: string
           service_id: string
           status: string
           stripe_session_id: string | null
@@ -75,8 +78,11 @@ export type Database = {
           customer_name: string
           customer_phone?: string | null
           deposit_paid?: number
+          discount_applied?: number | null
+          discount_id?: string | null
           id?: string
           notes?: string | null
+          payment_method?: string
           service_id: string
           status?: string
           stripe_session_id?: string | null
@@ -91,8 +97,11 @@ export type Database = {
           customer_name?: string
           customer_phone?: string | null
           deposit_paid?: number
+          discount_applied?: number | null
+          discount_id?: string | null
           id?: string
           notes?: string | null
+          payment_method?: string
           service_id?: string
           status?: string
           stripe_session_id?: string | null
@@ -151,6 +160,48 @@ export type Database = {
           owner_id?: string
           phone?: string | null
           slug?: string
+        }
+        Relationships: []
+      }
+      discounts: {
+        Row: {
+          business_id: string
+          created_at: string
+          customer_email: string
+          customer_name: string
+          discount_type: string
+          discount_value: number
+          id: string
+          is_active: boolean
+          reason: string
+          times_used: number
+          valid_until: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string
+          customer_email: string
+          customer_name?: string
+          discount_type?: string
+          discount_value?: number
+          id?: string
+          is_active?: boolean
+          reason?: string
+          times_used?: number
+          valid_until?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          discount_type?: string
+          discount_value?: number
+          id?: string
+          is_active?: boolean
+          reason?: string
+          times_used?: number
+          valid_until?: string | null
         }
         Relationships: []
       }
