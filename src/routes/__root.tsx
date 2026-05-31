@@ -15,17 +15,17 @@ import { Toaster } from "sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <div className="max-w-md text-center glass-strong p-12">
+        <h1 className="text-7xl font-bold text-white">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-white">Page not found</h2>
+        <p className="mt-2 text-sm text-white/60">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-[10px] bg-gradient-to-br from-indigo-500/80 to-violet-500/80 backdrop-blur-sm border border-indigo-500/50 px-6 py-2.5 text-sm font-medium text-white shadow-lg hover:from-indigo-500 hover:to-violet-500 hover:shadow-xl hover:shadow-indigo-500/25 transition-all duration-200"
           >
             Go home
           </Link>
@@ -43,27 +43,27 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <div className="max-w-md text-center glass-strong p-12">
+        <h1 className="text-xl font-semibold tracking-tight text-white">
           This page didn't load
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-sm text-white/60">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-[10px] bg-gradient-to-br from-indigo-500/80 to-violet-500/80 backdrop-blur-sm border border-indigo-500/50 px-6 py-2.5 text-sm font-medium text-white shadow-lg hover:from-indigo-500 hover:to-violet-500 hover:shadow-xl hover:shadow-indigo-500/25 transition-all duration-200"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-[10px] bg-white/5 backdrop-blur-md border border-white/15 px-6 py-2.5 text-sm font-medium text-white hover:bg-white/10 hover:border-white/25 transition-all duration-200"
           >
             Go home
           </a>
