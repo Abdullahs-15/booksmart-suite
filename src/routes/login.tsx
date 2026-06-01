@@ -32,33 +32,33 @@ function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="light-surface flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-[440px]">
-        <Link to="/" className="flex items-center justify-center gap-2 mb-6 font-semibold text-white text-lg">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/30"><Sparkles className="h-4 w-4" /></span>
+        <Link to="/" className="flex items-center justify-center gap-2 mb-6 font-semibold text-ink text-lg">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent-orange text-white shadow-sm"><Sparkles className="h-4 w-4" /></span>
           BookSmart
         </Link>
-        <Card className="glass-strong p-8">
-          <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
-          <p className="text-sm text-white/55 mt-1">Log in to your BookSmart dashboard.</p>
+        <div className="glass-light-strong p-8">
+          <h1 className="text-2xl font-semibold text-ink">Welcome back</h1>
+          <p className="text-sm text-ink-mid mt-1">Log in to your BookSmart dashboard.</p>
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" required value={email} onChange={e => setEmail(e.target.value)} />
+              <Label htmlFor="email" className="text-ink">Email</Label>
+              <Input id="email" type="email" required value={email} onChange={e => setEmail(e.target.value)} className="bg-white border-black/10 text-ink" />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
-                <button type="button" className="text-xs text-white/40 hover:text-indigo-300 transition-colors" onClick={() => toast.info("Password reset coming soon.")}>Forgot?</button>
+                <Label htmlFor="password" className="text-ink">Password</Label>
+                <button type="button" className="text-xs text-ink-sub hover:accent-orange" onClick={() => toast.info("Password reset coming soon.")}>Forgot?</button>
               </div>
-              <Input id="password" type="password" required value={password} onChange={e => setPassword(e.target.value)} />
+              <Input id="password" type="password" required value={password} onChange={e => setPassword(e.target.value)} className="bg-white border-black/10 text-ink" />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>{loading ? "Signing in..." : "Sign in"}</Button>
+            <Button type="submit" className="w-full rounded-full h-11" style={{ backgroundColor: "#0a0a0a", color: "white" }} disabled={loading}>{loading ? "Signing in..." : "Sign in"}</Button>
           </form>
-          <p className="text-sm text-white/50 mt-6 text-center">
-            No account? <Link to="/signup" className="text-indigo-300 font-medium hover:text-indigo-200 transition-colors">Create one</Link>
+          <p className="text-sm text-ink-mid mt-6 text-center">
+            No account? <Link to="/signup" className="accent-orange font-medium">Create one</Link>
           </p>
-        </Card>
+        </div>
       </div>
     </div>
   );
