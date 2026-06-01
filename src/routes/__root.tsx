@@ -86,6 +86,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@BookSmart" },
+      { name: "twitter:title", content: "BookSmart" },
+      { name: "twitter:description", content: "Online booking for modern service businesses." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dd62da56-8d4a-4d1b-9e6b-5edaaa0b9355/id-preview-ded64b58--58cc4a40-9246-4827-aacf-a9d0c36f65ec.lovable.app-1780335443863.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dd62da56-8d4a-4d1b-9e6b-5edaaa0b9355/id-preview-ded64b58--58cc4a40-9246-4827-aacf-a9d0c36f65ec.lovable.app-1780335443863.png" },
     ],
     links: [
       {
