@@ -251,7 +251,42 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      booking_slots: {
+        Row: {
+          booking_date: string | null
+          booking_time: string | null
+          business_id: string | null
+          service_id: string | null
+        }
+        Insert: {
+          booking_date?: string | null
+          booking_time?: string | null
+          business_id?: string | null
+          service_id?: string | null
+        }
+        Update: {
+          booking_date?: string | null
+          booking_time?: string | null
+          business_id?: string | null
+          service_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bookings_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       [_ in never]: never
