@@ -139,15 +139,15 @@ function BookPage() {
 
   return (
     <div className="light-surface">
-      <header className="border-b bg-white/70 backdrop-blur border-b border-black/5">
+      <header className="bg-white/70 backdrop-blur border-b border-black/5">
         <div className="mx-auto max-w-4xl px-6 py-6 flex items-start gap-4">
-          <div className="h-14 w-14 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 text-ink flex items-center justify-center overflow-hidden shadow-lg">
+          <div className="h-14 w-14 rounded-full bg-accent-orange text-white flex items-center justify-center overflow-hidden shadow-lg">
             {business.avatar_url ? <img src={business.avatar_url} alt={business.name} className="h-full w-full object-cover" /> : <Sparkles className="h-6 w-6" />}
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-xl font-bold tracking-tight text-ink">{business.name}</h1>
-              <Badge variant="outline" className="bg-white/10 text-ink border-white/20">{business.category}</Badge>
+              <Badge variant="outline" className="bg-orange-100 text-orange-700 border-orange-200">{business.category}</Badge>
             </div>
             {business.description && <p className="text-sm text-ink-mid mt-1">{business.description}</p>}
             {business.address && <p className="text-xs text-ink-mid mt-1 flex items-center gap-1"><MapPin className="h-3 w-3" />{business.address}</p>}
