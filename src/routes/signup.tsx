@@ -80,42 +80,41 @@ function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
-      <aside className="hidden lg:flex flex-col justify-between glass p-12 text-white rounded-none border-r border-white/10">
-        <Link to="/" className="flex items-center gap-2 font-semibold text-lg">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-500/30"><Sparkles className="h-4 w-4" /></span>
+    <div className="light-surface grid lg:grid-cols-2">
+      <aside className="hidden lg:flex flex-col justify-between p-12 text-ink border-r border-black/5" style={{ background: "linear-gradient(160deg, #FFEDD5 0%, #FFE4D1 60%, #FCE7F3 100%)" }}>
+        <Link to="/" className="flex items-center gap-2 font-semibold text-lg text-ink">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent-orange text-white shadow-sm"><Sparkles className="h-4 w-4" /></span>
           BookSmart
         </Link>
         <div>
-          <h2 className="text-3xl font-semibold leading-tight">Start taking online bookings today.</h2>
-          <ul className="mt-8 space-y-3 text-sm text-white/80">
+          <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink">Start taking online bookings today.</h2>
+          <ul className="mt-8 space-y-3 text-sm text-ink-mid">
             {["A polished booking page in minutes","Stripe deposits, no chargebacks","Cuts no-shows by 50% on average","Free during beta — no card required"].map(b => (
-              <li key={b} className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-400" />{b}</li>
+              <li key={b} className="flex items-center gap-2"><Check className="h-4 w-4 text-orange-600" />{b}</li>
             ))}
           </ul>
         </div>
-        <p className="text-xs text-white/40">© {new Date().getFullYear()} BookSmart</p>
+        <p className="text-xs text-ink-sub">© {new Date().getFullYear()} BookSmart</p>
       </aside>
       <main className="flex items-center justify-center p-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 via-transparent to-transparent pointer-events-none" />
         <div className="w-full max-w-md relative">
-          <h1 className="text-2xl font-semibold text-white">Create your account</h1>
-          <p className="text-sm text-white/55 mt-1">Already have one? <Link to="/login" className="text-indigo-300 font-medium hover:text-indigo-200 transition-colors">Log in</Link></p>
+          <h1 className="text-2xl font-semibold text-ink">Create your account</h1>
+          <p className="text-sm text-ink-mid mt-1">Already have one? <Link to="/login" className="accent-orange font-medium">Log in</Link></p>
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
-            <div className="space-y-2"><Label>Full name</Label><Input required value={form.fullName} onChange={e => setForm(f => ({...f, fullName: e.target.value}))} /></div>
-            <div className="space-y-2"><Label>Business name</Label><Input required value={form.businessName} onChange={e => setForm(f => ({...f, businessName: e.target.value}))} /></div>
-            <div className="space-y-2"><Label>Email</Label><Input type="email" required value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} /></div>
-            <div className="space-y-2"><Label>Password</Label><Input type="password" required minLength={6} value={form.password} onChange={e => setForm(f => ({...f, password: e.target.value}))} /></div>
+            <div className="space-y-2"><Label className="text-ink">Full name</Label><Input required value={form.fullName} onChange={e => setForm(f => ({...f, fullName: e.target.value}))} className="bg-white border-black/10 text-ink" /></div>
+            <div className="space-y-2"><Label className="text-ink">Business name</Label><Input required value={form.businessName} onChange={e => setForm(f => ({...f, businessName: e.target.value}))} className="bg-white border-black/10 text-ink" /></div>
+            <div className="space-y-2"><Label className="text-ink">Email</Label><Input type="email" required value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} className="bg-white border-black/10 text-ink" /></div>
+            <div className="space-y-2"><Label className="text-ink">Password</Label><Input type="password" required minLength={6} value={form.password} onChange={e => setForm(f => ({...f, password: e.target.value}))} className="bg-white border-black/10 text-ink" /></div>
             <div className="space-y-2">
-              <Label>Business category</Label>
+              <Label className="text-ink">Business category</Label>
               <Select value={form.category} onValueChange={v => setForm(f => ({...f, category: v}))}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger className="bg-white border-black/10 text-ink"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>{loading ? "Creating..." : "Create account"}</Button>
+            <Button type="submit" className="w-full rounded-full h-11" style={{ backgroundColor: "#0a0a0a", color: "white" }} disabled={loading}>{loading ? "Creating..." : "Create account"}</Button>
           </form>
         </div>
       </main>

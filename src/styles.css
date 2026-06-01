@@ -135,6 +135,48 @@
 }
 
 @layer utilities {
+  /* Light-surface scope for public pages (landing, auth, booking).
+     Authenticated dashboard keeps the default dark body. */
+  .light-surface {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F2 60%, #F1ECE3 100%);
+    color: #0A0A0A;
+    min-height: 100vh;
+  }
+  .light-surface ::selection { background: rgba(234, 88, 12, 0.18); color: #0a0a0a; }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px -16px rgba(15, 23, 42, 0.18);
+  }
+  .glass-light-strong {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px -24px rgba(15, 23, 42, 0.22);
+  }
+  .glass-tint-orange {
+    background: linear-gradient(160deg, rgba(255, 237, 213, 0.85), rgba(255, 214, 198, 0.7));
+    border: 1px solid rgba(234, 88, 12, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px -24px rgba(234, 88, 12, 0.35);
+  }
+  .glass-tint-lilac {
+    background: linear-gradient(160deg, rgba(237, 233, 254, 0.85), rgba(252, 231, 243, 0.7));
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px -24px rgba(139, 92, 246, 0.25);
+  }
+
+  .text-ink     { color: #0A0A0A; }
+  .text-ink-mid { color: rgba(10, 10, 10, 0.65); }
+  .text-ink-sub { color: rgba(10, 10, 10, 0.5); }
+  .accent-orange { color: #EA580C; }
+  .bg-accent-orange { background-color: #EA580C; }
+
   .glass {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
